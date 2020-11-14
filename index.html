@@ -2,8 +2,8 @@
 <html lang="en"><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="">
-<meta name="author" content="">
+<meta name="description" content="Web map for Syilx Digital Heritage">
+<meta name="author" content="WFN Archaeology Office">
 
 
     <title>Syilx Digital Heritage at Westbank First Nation</title>
@@ -16,7 +16,8 @@
     <link href="css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="css/leaflet.css" />
 
-
+    <!-- loads Leaflet -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.4/leaflet.js"></script>
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <!--<script src="js/ie-emulation-modes-warning.js"></script> -->
@@ -36,15 +37,8 @@
   <body>
 
 
-
-      <!-- cenralized navbar -->
-      <div id="central-nav"></div>
-
       <!-- MAP -->
       <div id="map"></div>
-
-      <!-- centralized footer -->
-      <div id="central-foot"></div>
 
     <!-- Bootstrap core JavaScript -->
     <!-- Placed at the end of the document so the pages load faster -->
@@ -55,27 +49,16 @@
 	<script type="text/javascript">
 	</script>
 
-    <!-- Calls centralized navbar and footer -->
-    <script src="centralize-nav-foot/nav-foot.js"></script>
-
 
 <!-- Initiates Map and pulls data from .CSV -->
 <script>
 
-            var map = L.map('map', {
-				attributionControl: false
-			}).setView([49.8274,-119.6151], 6);
+var map = L.map('map').setView([49.8274,-119.6151], 5);
 
-            L.tileLayer('https://a.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-				maxZoom: 18,
-				id: 'dngupta.0hm7jnc4',
-				accessToken: 'pk.eyJ1IjoiZG5ndXB0YSIsImEiOiJja2hneDQyeW4wMHVzMnlsZjRiN2dvd21rIn0.Q8trjfy3VAMQj1DxToIkIA'
-			}).addTo(map);
-			L.control.attribution().setPrefix(
-				'<a alt="A JS library for interactive maps" href="http://leafletjs.com" target="_blank">Leaflet</a>'
-			).addAttribution(
-				'Map data &copy; <a target="_blank" href="http://openstreetmap.org">OpenStreetMap</a> contributors | <a target="_blank" href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a> | Imagery © <a target="_blank" href="http://mapbox.com">Mapbox</a>'
-			).addTo(map);
+L.tileLayer ('https://a.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+    maxZoom: 18,
+	id: 'dngupta.0hm7jnc4',
+    accessToken: 'pk.eyJ1IjoiZG5ndXB0YSIsImEiOiJja2hneDQyeW4wMHVzMnlsZjRiN2dvd21rIn0.Q8trjfy3VAMQj1DxToIkIA'}).addTo(map);
 
             //enter path for .csv here
             omnivore.csv('wfn-places.csv')

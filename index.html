@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en"><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+
+
+    <title>Syilx Digital Heritage at Westbank First Nation</title>
+
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/leaflet.css" />
+
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <!--<script src="js/ie-emulation-modes-warning.js"></script> -->
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <!--<script src="js/ie10-viewport-bug-workaround.js"></script>-->
+
+
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+
+
+      <!-- cenralized navbar -->
+      <div id="central-nav"></div>
+
+      <!-- MAP -->
+      <div id="map"></div>
+
+      <!-- centralized footer -->
+      <div id="central-foot"></div>
+
+    <!-- Bootstrap core JavaScript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="leaflet-omnivore-master/leaflet-omnivore.js"></script>
+    <script src="js/leaflet.js"></script>
+	<script type="text/javascript">
+	</script>
+
+    <!-- Calls centralized navbar and footer -->
+    <script src="centralize-nav-foot/nav-foot.js"></script>
+
+
+<!-- Initiates Map and pulls data from .CSV -->
+<script>
+
+            var map = L.map('map', {
+				attributionControl: false
+			}).setView([49.8274,-119.6151], 6);
+
+            L.tileLayer('https://a.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+				maxZoom: 18,
+				id: 'dngupta.0hm7jnc4',
+				accessToken: 'pk.eyJ1IjoiZG5ndXB0YSIsImEiOiJja2hneDQyeW4wMHVzMnlsZjRiN2dvd21rIn0.Q8trjfy3VAMQj1DxToIkIA'
+			}).addTo(map);
+			L.control.attribution().setPrefix(
+				'<a alt="A JS library for interactive maps" href="http://leafletjs.com" target="_blank">Leaflet</a>'
+			).addAttribution(
+				'Map data &copy; <a target="_blank" href="http://openstreetmap.org">OpenStreetMap</a> contributors | <a target="_blank" href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a> | Imagery © <a target="_blank" href="http://mapbox.com">Mapbox</a>'
+			).addTo(map);
+
+            //enter path for .csv here
+            omnivore.csv('wfn-places.csv')
+             .on('ready', function(layer) {
+
+        this.eachLayer(function(marker) {
+
+            // Bind a popup to each icon based on the same properties
+            // Adds coloumns of extra info to marker popup
+            marker.bindPopup(marker.toGeoJSON().properties.timePeriod +
+                marker.toGeoJSON().properties.placeName + '<br><br> ' +
+                marker.toGeoJSON().properties.info + '<br><br> ' +
+                marker.toGeoJSON().properties.link, {autoPanPadding: [5,55]});
+        });
+    })
+            .addTo(map);
+
+</script>
+
+
+
+
+</body></html>

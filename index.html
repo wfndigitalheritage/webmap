@@ -52,9 +52,9 @@
 
 var map = L.map('map').setView([49.8274,-119.6151], 7);
 
-L.tileLayer ('https://api.mapbox.com/styles/v1/mapbox/satellite-v9/{id}/tiles/{z}/{x}/{y}?access_token={pk.eyJ1IjoiZG5ndXB0YSIsImEiOiJja2hneDQyeW4wMHVzMnlsZjRiN2dvd21rIn0.Q8trjfy3VAMQj1DxToIkIA}', {
+L.tileLayer ('https://api.mapbox.com/styles/v1/mapbox/satellite-v9/tiles/{z}/{x}/{y}?access_token={pk.eyJ1IjoiZG5ndXB0YSIsImEiOiJja2hneDQyeW4wMHVzMnlsZjRiN2dvd21rIn0.Q8trjfy3VAMQj1DxToIkIA}', {
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-    maxZoom: 18}).addTo(map);
+    maxZoom: 18 }).addTo(map);
 
             //enter path for .csv here
             omnivore.csv('wfn-places.csv')

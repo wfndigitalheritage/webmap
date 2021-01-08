@@ -1,2 +1,2 @@
 # webmap
-Web map to showcase Syilx digital heritage
+Web map to showcase syilx digital heritage
